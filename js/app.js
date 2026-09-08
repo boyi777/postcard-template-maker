@@ -79,6 +79,9 @@ function draw(){
     ctx.rect(region.x, region.y, region.w, region.h); 
     ctx.clip();
     // 繪製圖片時，加上 region.x 與 region.y 的座標偏移
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
     ctx.drawImage(img, region.x+px, region.y+py, dw, dh); 
     ctx.restore();
   }
