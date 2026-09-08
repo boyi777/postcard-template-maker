@@ -61,15 +61,17 @@ function draw(){
     // 將照片區域的起始 y 座標設定為 210 (上方留白 210px)
     const region={x:0, y:210, w:W, h:PHOTO_H}; 
     const iw=img.naturalWidth, ih=img.naturalHeight;
-    let scale;
-    if(fit.value==='contain') scale=Math.min(region.w/iw,region.h/ih);
-    else scale=Math.max(region.w/iw,region.h/ih);
-    scale*=Number(zoom.value);
 
-    const dw=iw*scale, dh=ih*scale;
-    const maxX=Math.max(0,dw-region.w), maxY=Math.max(0,dh-region.h);
-    const px=(region.w-dw)/2 - Number(x.value)*maxX/2;
-    const py=(region.h-dh)/2 - Number(y.value)*maxY/2;
+    const scale = Math.max(region.w / iw, region.h / ih) * Number(zoom.value);
+
+    const dw = iw * scale;
+    const dh = ih * scale;
+
+    const maxX = Math.max(0, dw - region.w);
+    const maxY = Math.max(0, dh - region.h);
+
+    const px = (region.w - dw) / 2 - Number(x.value) * maxX / 2;
+    const py = (region.h - dh) / 2 - Number(y.value) * maxY / 2;
 
     ctx.save();
     ctx.beginPath();
